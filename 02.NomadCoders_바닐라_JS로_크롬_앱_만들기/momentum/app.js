@@ -228,9 +228,9 @@ const USERNAME_KEY = 'userName';
 // local storage에 유저정보 유무 확인
 const savedUserName = localStorage.getItem(USERNAME_KEY);
 
-function paintGreetings(userName) {
+function paintGreetings(username) {
     greeting.classList.remove(HIDDEN_CLASSNAME);
-    greeting.innerText = `Hello ${userName}`;
+    greeting.innerText = `Hello ${username}`;
 }
 
 
@@ -238,9 +238,9 @@ function onLoginSubmit(event) {
     event.preventDefault();
     
     loginForm.classList.add(HIDDEN_CLASSNAME);
-    const userName = loginInput.value;
-    localStorage.setItem(USERNAME_KEY, userName);
-    paintGreetings(userName);
+    const userNameThatTheUserWrote = loginInput.value;
+    localStorage.setItem(USERNAME_KEY, userNameThatTheUserWrote);
+    paintGreetings(userNameThatTheUserWrote);
 }
 
 
@@ -260,25 +260,33 @@ if(savedUserName === null) {
 
 /* 4.7 - Super Recap */
 // local storage: 정보를 저장하고 불러오고 삭제하는 브라우저가 가지고 있는 작은 DB 같은 API
+
 /* 
 
-1. js가 local storage를 확인함 => localStorage.getItem('key');
+1. form과 h1은 둘 다 hidden 상태
 
-2-1. local storage에 정보가 없을 경우 값은 null
+2. js가 local storage를 확인함 => localStorage.getItem('key');
+
+3-1. local storage에 정보가 없을 경우 값은 null
     loginForm에 있는 HIDDEN_CLASSNAME 클래스 제거 => loginForm.classList.remove(HIDDEN_CLASSNAME);
     loginForm에 addEventListener를 더하고 submit 실행   =>  loginForm.addEventListener('submit', onLoginSubmit);
     submit event가 발생하면 onLoginSubmit 함수 실행     
-        >> 2-1-1. 기본 동작 event(submit이므로 페이지 새로고침) 막음  => event.preventDefault();
-        >> 2-1-2. form을 다시 숨김  => loginForm.classList.add(HIDDEN_CLASSNAME);
-        >> 2-1-3. loginInput.value를 userName이라는 변수로 저장     => const userName = loginInput.value;
-        >> 2-1-4. userName 값을 userName 이라는 key와 함께 local storage에 저장     => localStorage.setItem(USERNAME_KEY, userName);
+        >> 3-1-1. 기본 동작 event(submit이므로 페이지 새로고침) 막음  => event.preventDefault();
+        >> 3-1-2. form을 다시 숨김  => loginForm.classList.add(HIDDEN_CLASSNAME);
+        >> 3-1-3. loginInput.value를 userName이라는 변수로 저장     => const userNameThatTheUserWrote = loginInput.value;
+        >> 3-1-4. userName 값을 userName 이라는 key와 함께 local storage에 저장     => localStorage.setItem(USERNAME_KEY, userNameThatTheUserWrote);
                 (개발자 도구 > Application > Storage > Local Storage 에서 확인 가능)
-        >> 2-1-5. form 안에 있는 input에 입력한 유저명을 받는 paintGreetings() 함수 호출    => paintGreetings(userName);
-                ** paintGreetings() 함수
-                    - userName이라는 인자를 하나 받고 있고, 비어있는 h1 요소 안에 `Hello ${userName}` 이라는 텍스트를 추가해줌
-                    - h1 요소로부터 'hidden'이라는 클래스명 제거해줌
-        >> 2-1-6. h1요소가 노출됨
 
+3-2. local storage에 정보가 있을 경우
 
-2-2.
+4. form 안에 있는 input에 입력한 유저명을 받는 paintGreetings() 함수 호출  
+    => 3-1. paintGreetings(userNameThatTheUserWrote);
+    => 3-2. paintGreetings(savedUserName)
+
+    ** paintGreetings(userName) 함수
+        - userName이라는 인자를 하나 받고 있고, 비어있는 h1 요소 안에 `Hello ${username}` 이라는 텍스트를 추가해줌
+        - h1 요소로부터 HIDDEN_CLASSNAME 클래스 제거해줌
+
+5. h1요소가 노출됨
+
  */
