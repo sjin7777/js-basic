@@ -15,11 +15,11 @@
 // bad
 const name = 'ellie';
 const age = 4;
-function print(name, age) {
-    console.log(name);
-    console.log(age);
-}
-print(name, age);
+// function print(name, age) {
+//     console.log(name);
+//     console.log(age);
+// }
+// print(name, age);
 
 // good
 function printPerson(person) {

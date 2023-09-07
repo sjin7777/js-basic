@@ -34,7 +34,7 @@ console.log(ellie.age);             // 20
 ellie.speak();                      // ellie: hello
 
 
-/* 2. Getter and setter */
+/* 2. Getter and Setter */
 class User {
     // constructor(생성자)
     constructor(firstName, lastName, age) {
@@ -70,7 +70,7 @@ class User {
 }
 
 const user1 = new User('Steve', 'Job', -1);
-console.log(user1.age);             // 0
+console.log(user1.age);                       // 0
 
 
 
@@ -165,7 +165,7 @@ console.log(triangle.getArea());
 
 
 
-/* 6. Class checking: instanceOf */
+/* 6. Class checking: instanceof */
 // 왼쪽에 있는 Object가 오른쪽에 있는 클래스를 이용해서 만들어진 Object인지 확인
 console.log(rectangle instanceof Rectangle);        // true
 console.log(triangle instanceof Rectangle);         // false
