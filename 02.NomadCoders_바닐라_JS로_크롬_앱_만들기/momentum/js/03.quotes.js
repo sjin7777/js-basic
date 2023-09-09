@@ -1,6 +1,6 @@
 'use strict';
 
-console.clear();
+// console.clear();
 
 // 명언 모음
 const quotes = [
@@ -50,8 +50,8 @@ const quote = document.querySelector("#quote span:first-child");
 const author = document.querySelector("#quote span:last-child");
 
 // quotes[0] ~ quotes[9]를 무작위로 보여줘야 하는 함수 필요
-console.log(quotes[0]);
-console.log(quotes[quotes.length-1]);
+// console.log(quotes[0]);
+// console.log(quotes[quotes.length-1]);
 
 
 // randomness(무작위성)

@@ -79,15 +79,15 @@ function getClock1() {
     // arg2: string의 길이가 arg1가 아니라면 앞에 arg2을 추가함
     
     // "1"의 길이가 2가 아니므로 "1" 앞에 "0"을 추가함
-console.log("1".padStart(2, "0"));               // 01
-console.log("12".padStart(2, "0"));              // 12
+// console.log("1".padStart(2, "0"));               // 01
+// console.log("12".padStart(2, "0"));              // 12
 
 // 이 string의 길이가 적어도 20이 되어야 함. 만족하지 않는 경우 string 앞에 "x"로 채우기
-console.log("hello".padStart(20, "x"));         // xxxxxxxxxxxxxxxhello
+// console.log("hello".padStart(20, "x"));         // xxxxxxxxxxxxxxxhello
 
 
 // 참고로 string.padEnd(arg1, arg2)도 있음. 이건 뒤쪽에 문자를 추가해주는 함수임
-console.log("1".padEnd(2, "0"));                // 10
+// console.log("1".padEnd(2, "0"));                // 10
 
 
 function getClock() {

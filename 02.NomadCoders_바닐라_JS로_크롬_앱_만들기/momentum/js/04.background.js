@@ -1,7 +1,7 @@
 'use strict';
 
 
-console.clear();
+// console.clear();
 
 // 이미지 모음
 const images = [
