@@ -1,14 +1,14 @@
 'use strict';
 
-/*  */
 
 
 // 01.callback.js에서 생성한 예제를 promise를 이용하여 변경해보기.
 // 콜백지옥은 promise chaining으로 변경하기
 
 
-// Callback Hell Example
+/* Callback Hell Example */
 /*
+{
 class UserStorage {
 
     // 사용자를 로그인하게 하는 API
@@ -58,7 +58,7 @@ userStorage.loginUser(
         userStorage.getRoles(
             user
             , userWithRole => {
-                alert(`Hello ${userWithRole.name}, you have a ${user.role} role`);
+                alert(`Hello ${userWithRole.name}, you have a ${userWithRole.role} role`);
             }
             , error => { console.log(error) }
         ); 
@@ -67,12 +67,61 @@ userStorage.loginUser(
         console.log(error) 
     }
 );
+}
 */
 
 
-// promise 이용하여 고쳐보기
 
 
+/* promise 이용하여 고쳐보기 - 풀이 */
+/*
+{
+class UserStorage {
+
+    loginUser(id, pwd) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if((id === 'ellie' && pwd === 'dream') || (id === 'coder' && pwd === 'academy')) {
+                    resolve(id);
+                } else {
+                    reject(new Error('not found'));
+                }
+            }, 2000);
+        });
+    }
+
+
+    getRoles(user) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if(user === 'ellie') {
+                    resolve({ name: 'ellie', role: 'admin' });
+                } else {
+                    reject(new Error('no access'));
+                }
+            }, 1000);
+        });
+    }
+
+}
+
+const userStorage = new UserStorage();
+const userId = prompt('Enter Your Id');
+const userPwd = prompt('Enter Your Password');
+userStorage.loginUser(userId, userPwd)
+            .then(userStorage.getRoles)
+            .then(user => alert(`Hello ${user.name}, you have a ${user.role} role`))
+            .catch(console.log);
+
+}
+*/
+
+
+
+
+
+/* promise 이용하여 고쳐보기 - 정답 */
+{
 class UserStorage {
 
     loginUser(id, pwd) {
@@ -101,15 +150,13 @@ class UserStorage {
 
 }
 
-
-
 const userStorage = new UserStorage();
 const id = prompt('enter your id');
 const pwd = prompt('enter your password');
 
 userStorage
     .loginUser(id, pwd)
-    .then(userStorage.getRoles)                 //.then(user => userStorage.getRoles)
+    .then(userStorage.getRoles)                 
     .then(user => alert(`Hello ${user.name}, you have a ${user.role} role`))
     .catch(console.log);
 
@@ -119,11 +166,37 @@ userStorage
 
 /* async, await 이용해서 코드 고쳐보기 */
 /* 
-
-userStorage
+{
+    userStorage
     .loginUser(id, pwd)
     .then(userStorage.getRoles)                 
     .then(user => alert(`Hello ${user.name}, you have a ${user.role} role`))
     .catch(console.log);
 
+}
+    
 */
+
+
+// 풀이
+/*
+{
+    async function asyUser(id, pwd) {
+        const user = await userStorage.loginUser(id, pwd);
+        return `${user}`;
+    }
+    
+    async function asyRole(user) {
+        const userObj = await userStorage.getRoles(user); 
+        return `${userObj.role}`;
+    }
+    
+    asyUser(id, pwd)
+        .then(asyRole)
+        .then(role => alert(`Hello ${id}, you have a ${role} role`))
+        .catch(console.log)
+        
+}
+*/
+
+}
