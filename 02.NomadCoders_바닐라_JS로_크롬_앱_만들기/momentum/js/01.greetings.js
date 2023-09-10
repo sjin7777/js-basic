@@ -241,6 +241,9 @@ function onLoginSubmit(event) {
     const userNameThatTheUserWrote = loginInput.value;
     localStorage.setItem(USERNAME_KEY, userNameThatTheUserWrote);
     paintGreetings(userNameThatTheUserWrote);
+
+    // login 전에 todo에 써놓았던 text 지워지게 함
+    document.querySelector('#todo-form input').value = '';
 }
 
 
